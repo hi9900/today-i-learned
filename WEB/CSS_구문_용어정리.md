@@ -23,8 +23,3 @@ h1{
     
 ---
 
-## CSS with 개발자 도구
-
-- `styles`: 해당 요소에 선언된 모든 CSS
-
-- `computed`: 해당 요소에 최종 계산된 CSS
