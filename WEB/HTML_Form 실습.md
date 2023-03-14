@@ -46,8 +46,8 @@
   Google 설문지를 통해 비밀번호를 제출하지 마시오.
 </footer>
 ```
-
-### 텍스트 요소
+---
+## 텍스트 요소
 
 `<a></a>`: href속성을 활용하여 다른 URL로 연결하는 하이퍼링크 생성
 
@@ -55,7 +55,7 @@
 
 `<br>`: 텍스트 내에 줄바꿈 생성
 
-### 그룹 컨텐츠
+## 그룹 컨텐츠
 
 `<div></div>`: 의미없는 블록레벨 컨테이너
 
@@ -63,13 +63,13 @@
 
 `<hr>` 주제를 분리하기 위한 수평선 (A Horizontal Rule)
 
-### form
+### `<form></form>`
 
 사용자의 정보(데이터)를 제출하기 위한 영역
 
 - `action`: form을 처리할 서버의 URL
 
-### input
+### `<input>`
 
 다양한 타입을 가지는 입력 데이터 유형과 위젯 
 
@@ -77,12 +77,12 @@
 
 - `value`: form control에 적용되는 값
   
-  > #### input-type
+  > ### `<input> type`
   
-  - 일반 유형
+- 일반 유형
   
   `text`: 일반 텍스트 입력
-  
+
   `password`: 입력 시 값이 보이지 않고 문자를 특수기호로 표현
   
   `email`: 이메일 형식이 아닌 경우 form 제출 불가
@@ -91,17 +91,24 @@
   
   `file`: accept 속성을 활용하여 파일 타입 지정 가능
   
-  - 항목 중 선택 유형
-    동일한 범주에 속하는 항목들은 name을 통일하고, 선택된 항목의 값은 value로 지정
+- 항목 중 선택 유형
+
+  `label`로 선택에 대한 내용을 작성하고, 항목으로 선택할 수 있는 `input` 제공
+
+  동일한 범주에 속하는 항목들은 `name`을 통일하고, 선택된 항목의 값은 `value`로 지정
   
   `checkbox`: 다중 선택
   
   `radio`: 단일 선택
 
+- 종합 유형
 
+  `input`요소의 동작은 type에 따라 달라지므로, 각각의 내용 숙지
 
-### label
+  https://developer.mozilla.org/ko/docs/Web/HTML/Element/Input
+
+### `<label>`
 
 label을 클릭하여 input자체에 초점을 맞추거나 활성화시킬 수 있음
 
-input의 id속성, label의 for속성을 활용하여 상호연관
+`<input>`의 id속성, `<label>`의 for속성을 활용하여 상호연관
