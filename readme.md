@@ -8,14 +8,12 @@
 
 - 내용은 60줄 이하, 간결하게
 
-- 
-
 ## Commit message
 
 `TYPE: 커밋 메시지`
 
 - 생성: `ADD: 메시지`
 
-- 수정: `REMOVE: 메시지`
+- 수정: `REMOVE: 메시지`/ `UPDATE: 메시지`
 
 - 삭제: `DEL: 메시지`
