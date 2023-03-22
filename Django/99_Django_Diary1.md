@@ -24,6 +24,8 @@
 
 - `.gitignore` 파일로 깃으로 관리하지 않을 파일 골라내기
 
+- `.git` 폴더가 있는 위치에 만들기 
+
   [Python, Django, Windows, Pycharm, VisualStudioCodw, Vue, Vuejs:](https://www.toptal.com/developers/gitignore/api/python,django,windows,macos,pycharm,visualstudiocode,vue,vuejs)
 
 ## Django 설치
