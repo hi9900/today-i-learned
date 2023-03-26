@@ -39,9 +39,4 @@ def index(request):
   {% endfor %}
 {% endblock content %}
 ```
-
-## UPDATE
-
-- 
-
-## DELETE
+---
