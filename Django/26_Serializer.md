@@ -8,9 +8,9 @@
 # articles/urls.py
 
 urlpatterns = [
-		...,
+    ...,
     # path('comments/', views.comment_list),
-		# path('articles/<int:article_pk>/comments/', views.comment_create),
+    # path('articles/<int:article_pk>/comments/', views.comment_create),
     path('articles/<int:article_pk>/comments/', views.comment_list),
 ]
 

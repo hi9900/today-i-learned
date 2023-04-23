@@ -30,7 +30,7 @@ $ python manage.py loaddata articles.json comments.json
 | ----------- | :-------: | :----: | :-------: | :-------: |
 | comments/   | 전체 댓글 조회 |  |  |  |
 | comments/1/ | 1번 댓글 조회 |  | 1번 댓글 수정 | 1번 댓글 삭제 |
-| comments/1/comments/ |  | 1번 게시글에 댓글 생성 |  |  |
+| articles/1/comments/ |  | 1번 게시글에 댓글 생성 |  |  |
 
 ### GET - List
 
@@ -38,7 +38,6 @@ $ python manage.py loaddata articles.json comments.json
 
 ```python
 # articles/serializers.py
-
 from .models import Article, Comment
 
 class CommentSerializer(serizalizers.ModelSerializer):
@@ -47,17 +46,14 @@ class CommentSerializer(serizalizers.ModelSerializer):
 		fields = '__all__'
 
 # articles/urls.py
-
 urlpatterns = [
 	...,
 	path('comments/', views.comment_list),
 ]
 
 # articles/views.py
-
 from .models import Article, Comment
 from .serializers import ..., CommentSerializer
-
 
 @api_view(['GET'])
 def comment_list(request):
