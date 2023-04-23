@@ -42,15 +42,15 @@ $ python manage.py loaddata articles.json comments.json
 from .models import Article, Comment
 
 class CommentSerializer(serizalizers.ModelSerializer):
-    class Meta:
-        model = Comment
-				fields = '__all__'
+	class Meta:
+		model = Comment
+		fields = '__all__'
 
 # articles/urls.py
 
 urlpatterns = [
-		...,
-		path('comments/', views.comment_list),
+	...,
+	path('comments/', views.comment_list),
 ]
 
 # articles/views.py
@@ -61,9 +61,9 @@ from .serializers import ..., CommentSerializer
 
 @api_view(['GET'])
 def comment_list(request):
-		comments = Comment.object.all()
-		serializer = CommentSerializer(comments, many=True)
-		return Response(serializer.data)
+	comments = Comment.object.all()
+	serializer = CommentSerializer(comments, many=True)
+	return Response(serializer.data)
 ```
 
 ### GET - Detail
@@ -76,18 +76,18 @@ def comment_list(request):
 # articles/urls.py
 
 urlpatterns = [
-		...,
-		path('comments/<int:comment_pk>/', views.comment_detail),
+	...,
+	path('comments/<int:comment_pk>/', views.comment_detail),
 ]
 
 # articles/views.py
 
 @api_view(['GET'])
 def comment_detail(request, comment_pk):
-		comment = Comment.objects.get(pk=comment_pk)
-		if request.method == 'GET':
-				serializer = CommentSerializer(comment)
-				return Response(serializer.data)
+	comment = Comment.objects.get(pk=comment_pk)
+	if request.method == 'GET':
+		serializer = CommentSerializer(comment)
+		return Response(serializer.data)
 ```
 
 ### POST
@@ -104,19 +104,19 @@ def comment_detail(request, comment_pk):
 # articles/urls.py
 
 urlpatterns = [
-		...,
-		path('articles/<int:article_pk>/comments/', views.comment_create),
+	...,
+	path('articles/<int:article_pk>/comments/', views.comment_create),
 ]
 
 # articles/views.py
 
 @api_view(['POST'])
 def comment_create(request, article_pk):
-		article = Article.objects.get(pk=article_pk)
-		serializer = CommentSerializer(data=request.data)
-		if serializer.is_valid(raize_exception=True):
-				serializer.save(article=article)
-				return Response(serializer.data, status=status.HTTP_201_CREATED)
+	article = Article.objects.get(pk=article_pk)
+	serializer = CommentSerializer(data=request.data)
+	if serializer.is_valid(raize_exception=True):
+		serializer.save(article=article)
+		return Response(serializer.data, status=status.HTTP_201_CREATED)
 ```
 
 - 에러: CommentSerializer에서 article field 데이터 또한 사용자로부터 입력받도록 설정되어 있기 때문에
@@ -133,10 +133,10 @@ def comment_create(request, article_pk):
 # articles/serializers.py
 
 class CommentSerializer(serizalizers.ModelSerializer):
-    class Meta:
-        model = Comment
-				fields = '__all__'
-				read_only_fields = ('articles', )
+	class Meta:
+		model = Comment
+		fields = '__all__'
+		read_only_fields = ('articles', )
 ```
 
 ### DELETE & PUT
@@ -148,14 +148,14 @@ class CommentSerializer(serizalizers.ModelSerializer):
 ```python
 @api_view(['GET', 'DELETE', 'PUT'])
 def comment_detail(request, comment_pk):
-		...
-		elif request.method == 'DELETE':
-			  comment.delete()
-				return Response(status=status.HTTP_204_NO_CONTENT)
+	...
+	elif request.method == 'DELETE':
+		comment.delete()
+		return Response(status=status.HTTP_204_NO_CONTENT)
 
-		elif request.method == 'PUT':
-			  serializer = CommentSerializer(comment, data=request.data)
-				if serializer.is_valid(raise_exception=True)
-						serializer.save()
-						return Response(serializer.data)
+	elif request.method == 'PUT':
+		serializer = CommentSerializer(comment, data=request.data)
+		if serializer.is_valid(raise_exception=True)
+			serializer.save()
+			return Response(serializer.data)
 ```
