@@ -127,7 +127,7 @@ def comment_create(request, article_pk):
 
 - `read_only_fields`를 사용해 외래 키 필드를 '읽기 전용 필드'로 설정
 
-- 읽기 전용 필드는 데이터를 전홍사는 시점에 '해당 필드를 유효성 검사에서 제외시키고 데이터 조회 시에는 출력'하도록 함
+- 읽기 전용 필드는 데이터를 전송하는 시점에 '해당 필드를 유효성 검사에서 제외시키고 데이터 조회 시에는 출력'하도록 함
 
 ```python
 # articles/serializers.py

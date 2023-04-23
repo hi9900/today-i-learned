@@ -59,7 +59,7 @@
 
   - serializers field's argument
 
-  - 필드를 채우는 데 상요할 속성의 이름
+  - 필드를 채우는 데 사용할 속성의 이름
 
   - 점 표기법(dotted notation)을 사용하여 속성을 탐색할 수 있음
 
