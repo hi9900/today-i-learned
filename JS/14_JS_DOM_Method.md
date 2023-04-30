@@ -50,15 +50,15 @@
 
 - `HTMLElement.innerText`
 
-  Node 객체와 그 자손의 텍스트 컨텐츠(DOMString)를 표현 (해당 요소 내브의 raw text)
+  Node 객체와 그 자손의 텍스트 컨텐츠(DOMString)를 표현 (해당 요소 내부의 raw text)
 
   사람이 읽을 수 있는 요소만 남김
 
   즉, 줄 바꿈을 인식하고 숨겨진 내용을 무시하는 등 최종적으로 스타일링이 적용된 모습으로 표현됨
 
-  > `node.textcontent` vs `HTMLElement.innerText`
+  > `node.textContent` vs `HTMLElement.innerText`
 
-    hidden 속성이 적용되면 node.innerTest는 보이지 않고, textcontent는 볼 수 있음
+    textContent는 노드의 모든 요소를 반환한다. 그에 비해 innerText는 스타일링을 고려하며, "hidden" 요소의 텍스트는 반환하지 않는다.
 
 ### 추가
 

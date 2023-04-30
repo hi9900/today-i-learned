@@ -14,25 +14,25 @@
 
 - 배열의 길이는 `array.length` 형태로 접근 가능
 
-### 배열 메서드 기초
+### 배열 메서드 1
 
-- reverse
+- `array.reverse()`
 
   원본 배열 요소들의 순서를 반대로 정렬
 
-- push & pop
+- `array.push(num)` & `array.pop()`
 
   배열의 가장 뒤에 요소를 추가 또는 제거
 
-- unshift & shift
+- `array.unshift(num)` & `array.shift()`
 
   배열의 가장 앞에 요소를 추가 또는 제거
 
-- include
+- `array.include(num)`
 
-  배열에 특정 값이 존재하는 지 판별 후 참/거짓 반환
+  배열에 특정 값이 존재하는 지 판별 후 참(true)/거짓(false) 반환
 
-- indexOf
+- `array.indexOf(num)`
 
   배열에 특정 값이 존재하는 지 판별 후 인덱스 반환, 없다면 -1 반환
 
@@ -62,7 +62,7 @@ console.log(numbers.indexOf(3))     // 2
 console.log(numbers.indexOf(100))   // -1
 ```
 
-### 배열 메서드 심화
+### 배열 메서드 2
 
 - Array Helper Methods
 
@@ -90,7 +90,7 @@ console.log(numbers.indexOf(100))   // -1
 
   - forEach 메서드에 callBackFunc 함수를 인자로 넘겨 numbers 배열의 각 요소를 callBackFunc 함수의 인자로 사용용
 
-- forEach
+- `array.forEach`
 
   ```js
   array.forEach(callback (element, index, array) {
@@ -110,7 +110,7 @@ console.log(numbers.indexOf(100))   // -1
 
   - 반환 값(return) 없음
 
-- map
+- `array.map`
 
   ```js
   array.map(function (element, index, array) {
@@ -124,7 +124,7 @@ console.log(numbers.indexOf(100))   // -1
 
   - 기존 배열 전체를 다른 형태로 바꿀 때 유용 (forEach + return)
 
-- filter
+- `array.filter`
 
   ```js
   array.filter(fuction (element, index, array) {
@@ -138,7 +138,7 @@ console.log(numbers.indexOf(100))   // -1
 
   - 기존 배열의 요소들을 필터링할 때 유용
 
-- reduce
+- `array.reduce`
 
   ```js
   array.reduce(function (acc, element, index, array) {
@@ -160,7 +160,7 @@ console.log(numbers.indexOf(100))   // -1
 
   - 빈 배열의 경우 initialValue를 제공하지 않으면 에러 발생
 
-- find
+- `array.find`
 
   ```js
   array.find(function (element, index, array) {
@@ -174,7 +174,7 @@ console.log(numbers.indexOf(100))   // -1
 
   - 찾는 값이 배열에 없으면 `undefined` 반환
 
-- some
+- `array.some`
 
   ```js
   array.some(function (element, index, array) {
@@ -188,7 +188,7 @@ console.log(numbers.indexOf(100))   // -1
 
   - 빈 배열은 항상 `false` 반환
 
-- every
+- `array.every`
 
   ```js
   array.every(fuction (element, index, array) {
