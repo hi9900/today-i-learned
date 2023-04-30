@@ -4,7 +4,7 @@
 
 JavaScript는 클라이언트 측 웹(브라우저)에서 실행
 
-웹 페이지가 이벤트 발생 시 어떻게 작동하는 지 디자인 / 프로그램ㅇ
+웹 페이지가 이벤트 발생 시 어떻게 작동하는 지 디자인 / 프로그래밍
 
 웹 페이지 동작을 제어하는 데 널리 사용
 
@@ -81,8 +81,8 @@ JavaScript Engine은 자바스크립트 코드를 실행하는 프로그램 또�
     ...
     </head>
     <body>
-    </body>
       <script type="text/javascript" src="hello.js"></script>
+    </body>
     </html>
   ```
 

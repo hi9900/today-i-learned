@@ -218,7 +218,7 @@ typeof undefined  // "undefined"
     단, 이 경우 함수 이름은 호출에 사용되지 못하고 디버깅 용도로 사용됨
 
   ```js
-  const sub = fuction (num1, num2) {
+  const sub = function (num1, num2) {
     return num1 - num2
   }
 
