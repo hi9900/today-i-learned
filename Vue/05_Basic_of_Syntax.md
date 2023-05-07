@@ -47,7 +47,7 @@
 
   - derective: HTML 기반 template syntax
 
-  - HTML의 기본 속성이 아닌 Vue가 제공하는 특수 속성의 값응로 data를 작성
+  - HTML의 기본 속성이 아닌 Vue가 제공하는 특수 속성의 값으로 data를 작성
 
 ```html
 <div id="app">

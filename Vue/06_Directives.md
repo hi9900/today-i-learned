@@ -175,7 +175,7 @@
 
 - 각 요소가 객체라면 `dot notation`으로 접근할 수 있음
 
-> 특수속성 key
+> 특수 속성 key
 
   - v-for 사용 시 반드시 key 속성을 각 요소에 작성
 
@@ -329,3 +329,20 @@
 - Vue instance와 DOM의 양방향 바인딩
 
 - Vue data 변경 시 v-model로 연결된 사용자 입력 element에도 적용
+
+```html
+<div id="app7">
+  <h3>{{ my Message }}</h3>
+  <input v-model="myMessage" type="text">
+  <hr>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+  const app7 = new Vue({
+    el: '#app7',
+    data: {
+      myMessage: '',
+    },
+  })
+```

@@ -30,7 +30,7 @@
 
 - Vue로 작업을 시작하기 위해 CDN을 가져와야 함
 
-- Djangp == Python Web Framework
+- Django == Python Web Framework
 
   - pip install
 
