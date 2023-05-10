@@ -33,7 +33,7 @@ export default myModule
 ```
 
 > 정의한 js파일의 객체를 import
->
+> 
 > Store의 modules 옵션에 추가
 
 ```js
