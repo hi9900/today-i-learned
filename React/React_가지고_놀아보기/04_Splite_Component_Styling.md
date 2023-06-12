@@ -159,7 +159,7 @@
 
   - css/sass 파일을 작성할 필요없이 하나의 파일 안에서 스타일까지 모두 설정이 가능
 
-  - CSS-in-JS 라이브러리 중 가장 많이 사용되는 styled-components 라이브러리
+  - CSS-in-JS 라이브러리 중 가장 많이 사용되는 [styled-components](https://styled-components.com/) 라이브러리
 
   > 라이브러리 설치
 
