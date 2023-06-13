@@ -14,7 +14,7 @@
 
 ## React의 특징: Virtual DOM
 
-  - Virual DOM: 가상의 DOM
+  - Virtual DOM: 가상의 DOM
 
     React에서는 인터렉션이 발생하게 되면 브라우저의 DOM에 접근하여 변화를 반영하는 것이 아니라, 
     
