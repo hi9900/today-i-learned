@@ -81,4 +81,5 @@
   ```bash
   cd react-project
   npm start
+  yarn start
   ```
