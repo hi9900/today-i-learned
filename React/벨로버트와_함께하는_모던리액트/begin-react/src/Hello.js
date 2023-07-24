@@ -1,9 +1,16 @@
 import React from 'react'
 
-function Hello({ color, name }) {
+function Hello({ color, name, isSpecial }) {
   return (
     <>
-      <div style={{ color }}>안뇽 {name}</div>
+      <div style={{ color }}>
+        {isSpecial ? <b>*</b> : null}
+        삼항연산자 {name}
+      </div>
+      <div style={{ color }}>
+        {isSpecial && <b>*</b>}
+        && 연산자 {name}
+      </div>
     </>
   )
 }

@@ -6,7 +6,8 @@ function App() {
   return (
     <div>
       <Wrapper>
-        <Hello name="react" color="red" />
+        <Hello name="react" color="red" isSpecial={true} />
+        <Hello name="react" color="red" isSpecial />
         <Hello color="pink" />
       </Wrapper>
     </div>
