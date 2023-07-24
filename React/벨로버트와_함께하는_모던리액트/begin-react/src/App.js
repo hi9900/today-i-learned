@@ -7,7 +7,7 @@ function App() {
     <div>
       <Wrapper>
         <Hello name="react" color="red" />
-        <Hello color="red" />
+        <Hello color="pink" />
       </Wrapper>
     </div>
   );
