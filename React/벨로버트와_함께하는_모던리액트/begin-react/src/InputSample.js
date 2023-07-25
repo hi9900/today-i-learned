@@ -25,8 +25,13 @@ function InputSample() {
 
   return (
     <div>
-      <input name='name' onChange={onChange} placeholder='이름' />
-      <input name='nickname' onChange={onChange} placeholder='닉네임' />
+      <input name='name' value={name} onChange={onChange} placeholder='이름' />
+      <input
+        name='nickname'
+        value={nickname}
+        onChange={onChange}
+        placeholder='닉네임'
+      />
       <button onClick={onReset}>초기화</button>
       <div>
         <b>값: </b>
