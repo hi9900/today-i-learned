@@ -50,3 +50,33 @@ const add: Add = (a, b, c?: number) => {
 ```
 
 ## 다형성 polymorphism
+
+```ts
+// 배열을 받고 그 배열의 요소를 하나씩 print
+
+// concrete type: 우리가 전부터 봐왔던 타입(number, boolean, string, void 등)
+// 모든 경우마다 call signature 작성해 줘야 함
+// type SuperPrint = {
+//     (arr: number[]): void
+//     (arr: boolean[]): void
+//     (arr: string[]): void
+// }
+// generic: 타입의 placeholder
+// concrete type을 모를 때
+// 타입을 유추하고 유추한 타입으로 call signature 대체
+type SuperPrint = {
+  // <TypePlaceholder>(arr: TypePlaceholder[]): void
+  <T>(arr: T[]): void;
+};
+
+const superPrint: SuperPrint = (arr) => {
+  arr.forEach((i) => console.log(i));
+};
+
+superPrint([1, 2, 3, 4]);
+superPrint([true, false, false]);
+superPrint(["a", "b", "c"]);
+superPrint([1, 2, true, false]);
+```
+
+### Generics Recap
