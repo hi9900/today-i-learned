@@ -1,0 +1,23 @@
+.border {
+  border: dashed grey 1px;
+}
+
+.head {
+  fill: #cd803d;
+}
+
+.eye {
+  fill: white;
+}
+
+.mouth {
+  fill: none;
+  stroke: white;
+  stroke-width: 2px;
+}
+
+.limb {
+  stroke: #cd803d;
+  stroke-width: 35px;
+  stroke-linecap: round;
+}
