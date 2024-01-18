@@ -2,22 +2,49 @@
   border: dashed grey 1px;
 }
 
-.head {
-  fill: #cd803d;
+/* Day2 */
+.gingerbread {
+  .head {
+    fill: #cd803d;
+  }
+  .eye {
+    fill: white;
+  }
+  .mouth {
+    fill: none;
+    stroke: white;
+    stroke-width: 2px;
+  }
+  .limb {
+    stroke: #cd803d;
+    stroke-width: 35px;
+    stroke-linecap: round;
+  }
 }
 
-.eye {
-  fill: white;
-}
-
-.mouth {
-  fill: none;
-  stroke: white;
+.house {
+  stroke: black;
   stroke-width: 2px;
-}
+  fill: white;
 
-.limb {
-  stroke: #cd803d;
-  stroke-width: 35px;
-  stroke-linecap: round;
+  .roof {
+    fill: none;
+    stroke: #d1495b;
+    stroke-width: 10px;
+    stroke-linecap: round;
+  }
+
+  .door {
+    fill: #d1495b;
+  }
+  .stair {
+    fill: gray;
+  }
+  .window {
+    fill: #fdea96;
+  }
+  .window-sill {
+    fill: #d1495b;
+    stroke-linecap: round;
+  }
 }
