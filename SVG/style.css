@@ -2,7 +2,7 @@
   border: dashed grey 1px;
 }
 
-/* Day2 */
+/* Day3 */
 .gingerbread {
   .head {
     fill: #cd803d;
@@ -22,6 +22,7 @@
   }
 }
 
+/* Day4 */
 .house {
   stroke: black;
   stroke-width: 2px;
