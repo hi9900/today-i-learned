@@ -36,3 +36,6 @@ for x in range(total_pages):
     scrape_page(url)
 
 print(len(all_jabs))
+
+# 브라우저 외의 스크래핑 방지 우회
+# r = requests.get("https://remoteok.com/remote-python-jobs", headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"})
