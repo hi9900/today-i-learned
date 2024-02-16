@@ -44,11 +44,4 @@
 
 `line-through` 텍스트 중앙을 통과하는 줄을 생성한다.
 
-## 예제
-
-<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="poYGaeL" data-user="lbdasdbt-the-selector" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
-  <span>See the Pen <a href="https://codepen.io/lbdasdbt-the-selector/pen/poYGaeL">
-  Text decoration</a> by hi (<a href="https://codepen.io/lbdasdbt-the-selector">@lbdasdbt-the-selector</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+## [예제](https://codepen.io/lbdasdbt-the-selector/pen/poYGaeL)
