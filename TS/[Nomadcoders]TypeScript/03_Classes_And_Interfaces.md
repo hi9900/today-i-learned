@@ -1,4 +1,4 @@
-## Classe
+## Classes
 
 ```ts
 class Player {

@@ -1,10 +1,58 @@
-> 노마드코더 타입스크립트로 블록체인 만들기 강의 내용
+> 노마드코더 타입스크립트로 블록체인 만들기 강의 내용 #2.1 - #2.4
 
-## object
+---
+
+## Implicit Types vs Explicit Types in TypeScript
+
+### Implicit Types (암시적 타입)
+
+- 변수의 초기값을 보고 타입을 자동으로 추론
 
 ```ts
-// object type
-// const [objectName]: [Type] = value
+let message = "Hello, TypeScript!"; // 자동으로 string 타입으로 추론
+let count = 42; // 자동으로 number 타입으로 추론
+let isActive = true; // 자동으로 boolean 타입으로 추론
+
+// message = 10; // 오류 (message는 string 타입으로 추론됨)
+```
+
+### Explicit Types (명시적 타입)
+
+- 변수 선언 시 직접 타입을 지정
+
+```ts
+let username: string = "John";
+let age: number = 25;
+let isPremiumUser: boolean = false;
+
+let numbers: number[] = [1, 2, 3, 4, 5]; // 배열의 타입 지정
+let user: { name: string; age: number } = { name: "Alice", age: 30 }; // 객체 타입 지정
+```
+
+> 함수에서의 예시
+
+```ts
+// 암시적 타입 (TypeScript가 자동 추론)
+function add(a: number, b: number) {
+  return a + b; // 반환 타입은 자동으로 number로 추론됨
+}
+
+// 명시적 타입 (직접 선언)
+function multiply(a: number, b: number): number {
+  return a * b; // 반환 타입을 number로 명시적으로 지정
+}
+```
+
+---
+
+## Types
+
+### Optional Properties (선택적 속성)
+
+Typescript 에서는 객체의 특정 속성이 필수가 아니라 선택적으로 존재할 수도 있음을 나타낼 수 있다.
+이를 위해 `?`(물음표)를 사용한다.
+
+```ts
 const player: {
   name: string;
   age?: number;
@@ -15,45 +63,67 @@ const player: {
 // player.age가 undefined일 수 있기 때문에
 if (player.age && player.age < 10) {
 }
+```
 
-// Alias
+### Type Aliases (타입 별칭)
+
+타입 별칭(Type Alias)을 사용하면 복잡한 타입을 재사용 가능하도록 이름을 지정할 수 있다.
+`type` 키워드를 사용하여 객체, 유니언 타입, 배열 등 다양한 타입을 정의할 수 있다.
+
+```ts
 type Age = number;
 type Player = {
   name: string;
   age?: Age;
 };
 
-const Me: Player = {
+const me: Player = {
   name: "me",
 };
+const you: Player = {
+  name: "you",
+  age: 20,
+};
+```
 
-// function(인수:타입): 결과타입
+### function
+
+함수의 타입을 지정할 때 매개변수 타입과 반환값 타입을 정의한다.
+반환값이 없는 단순 실행 함수일 경우, `void`를 사용한다.
+
+```ts
 function playerMaker(name: string): Player {
   return {
     name,
   };
 }
-
 const playerMaker2 = (name: string): Player => ({ name });
 
-const hi = playerMaker("hi");
-hi.age = 12;
+// 반환값 없음
+const logMessage(message: string): void {
+  console.log(message);
+}
+
+// 함수 타입 별칭
+type PlayerMakerType = (name: string) => Player;
+const playerMaker3: PlayerMakerType = (name: string) => ({ name });
 ```
 
 ### readonly
 
+`readonly` 키워드는 객체의 속성이 수정되지 않도록 보호하는 역할을 한한다.
+즉, 한 번 값을 할당하면 재할당할 수 없다.
+
 ```ts
-// readonly
 type Player = {
   readonly name: string;
   age?: Age;
 };
-// 수정 불가
-// hi.name='las'
+// hi.name='las' // ❌ name 수정 불가
+hi.age = 12;
 
 const numbers: readonly number[] = [1, 2, 3, 4];
-// 수정 불가
-numbers.push(1);
+// numbers.push(1); // ❌ 배열 수정 불가
 ```
 
 ## Tuple & any
