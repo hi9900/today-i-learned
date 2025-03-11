@@ -8,7 +8,7 @@
 
 - 변수의 초기값을 보고 타입을 자동으로 추론
 
-```ts
+```typescript
 let message = "Hello, TypeScript!"; // 자동으로 string 타입으로 추론
 let count = 42; // 자동으로 number 타입으로 추론
 let isActive = true; // 자동으로 boolean 타입으로 추론
@@ -20,7 +20,7 @@ let isActive = true; // 자동으로 boolean 타입으로 추론
 
 - 변수 선언 시 직접 타입을 지정
 
-```ts
+```typescript
 let username: string = "John";
 let age: number = 25;
 let isPremiumUser: boolean = false;
@@ -31,7 +31,7 @@ let user: { name: string; age: number } = { name: "Alice", age: 30 }; // 객체 
 
 > 함수에서의 예시
 
-```ts
+```typescript
 // 암시적 타입 (TypeScript가 자동 추론)
 function add(a: number, b: number) {
   return a + b; // 반환 타입은 자동으로 number로 추론됨
@@ -52,7 +52,7 @@ function multiply(a: number, b: number): number {
 Typescript 에서는 객체의 특정 속성이 필수가 아니라 선택적으로 존재할 수도 있음을 나타낼 수 있다.
 이를 위해 `?`(물음표)를 사용한다.
 
-```ts
+```typescript
 const player: {
   name: string;
   age?: number;
@@ -70,7 +70,7 @@ if (player.age && player.age < 10) {
 타입 별칭(Type Alias)을 사용하면 복잡한 타입을 재사용 가능하도록 이름을 지정할 수 있다.
 `type` 키워드를 사용하여 객체, 유니언 타입, 배열 등 다양한 타입을 정의할 수 있다.
 
-```ts
+```typescript
 type Age = number;
 type Player = {
   name: string;
@@ -86,12 +86,14 @@ const you: Player = {
 };
 ```
 
+---
+
 ### function
 
 함수의 타입을 지정할 때 매개변수 타입과 반환값 타입을 정의한다.
 반환값이 없는 단순 실행 함수일 경우, `void`를 사용한다.
 
-```ts
+```typescript
 function playerMaker(name: string): Player {
   return {
     name,
@@ -114,7 +116,7 @@ const playerMaker3: PlayerMakerType = (name: string) => ({ name });
 `readonly` 키워드는 객체의 속성이 수정되지 않도록 보호하는 역할을 한한다.
 즉, 한 번 값을 할당하면 재할당할 수 없다.
 
-```ts
+```typescript
 type Player = {
   readonly name: string;
   age?: Age;
@@ -126,31 +128,42 @@ const numbers: readonly number[] = [1, 2, 3, 4];
 // numbers.push(1); // ❌ 배열 수정 불가
 ```
 
-## Tuple & any
+---
 
-```ts
-// tuple
-// 정해진 개수에 맞는 요소 array
+### Tuple (튜플)
+
+고정된 길이와 타입을 가진 배열
+즉, 배열이지만 각 요소의 타입과 순서가 고정된다.
+
+```typescript
 const player: [string, number, boolean] = ["hi", 12, false];
 const player1: readonly [string, number, boolean] = ["hi", 12, false];
+```
 
-let a: undefined = undefined;
-let b: null = null;
+### any
 
-// any: 비어있는 값 []
-// typescript의 규칙을 따르지 않음: 자바스크립트
+`any`는 어떤 타입이든 허용하는 유연한 타입이다.
+Typescript의 타입 안정성을 무너뜨릴 수 있기 때문에 주의가 필요하다.
+
+```typescript
+let a = [];
+let b: any = true;
+
 const c: any[] = [1, 2, 3, 4];
 const d: any = true;
 
-// 가능
-c + d;
+c + d; // ✅ 가능
 ```
 
-## unknown
+---
 
-```ts
-// unknown
-// 변수의 타입을 미리 알지 못할 때 지정
+### unknown
+
+`unknown`은 변수의 타입일 미리 알지 못할 때 사용한다.
+어떤 타입이든 받을 수 있지만, 사용하기 전에 타입 검사(`typeof`, `instanceof`)가 필요한 타입이다.
+외부에서 받은 데이터를 처리할 때 사용할 수 있다.
+
+```typescript
 let a: unknown;
 
 if (typeof a === "number") {
@@ -161,39 +174,41 @@ if (typeof a === "string") {
 }
 ```
 
-## void
+### void
 
-```ts
-// void
-// 아무것도 return 하지 않는 함수
-// 따로 지정해 줄 필요는 없음. 타입스크립트가 자동으로 인식한다
+`void`는 아무 값도 반환하지 않는 함수의 반환 타입을 정의할 때 사용한다.
+`void`를 반환하는 함수는 기본적으로 `undefined`를 반환하지만, 실제 값으로 `undefined`를 반환하는 것은 권장되지 않는다.
+
+```typescript
 function hello() {
   console.log("hello");
 }
 const a = hello();
 ```
 
-## never
+### never
 
-```ts
-// never
-// 함수가 절대 return 하지 않을 때
-// ex. 함수에서 exception이 발생할 때
+`never`은 절대 반환되지 않는 값을 나타낸다.
+에러를 던지거나, 무한루프에 빠지는 함수의 반환 타입이 `never`이다.
 
+```typescript
 // 리턴하지 않고 오류를 발생시키는 함수
 function hello(): never {
   throw new Error("xxx");
 }
 
-// 타입이 두가지일 수 있는 상황에 발생
+// 타입이 두 가지일 수 있는 상황에 발생
 function helloN(name: string | number) {
   if (typeof name === "string") {
     // name: string
   } else if (typeof name === "number") {
     // name: number
   } else {
+    // 실행되지 않는 블록
     // name: never
     name;
   }
 }
 ```
+
+---
