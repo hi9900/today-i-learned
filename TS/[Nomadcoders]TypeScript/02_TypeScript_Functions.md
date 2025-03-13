@@ -1,148 +1,139 @@
-## Call Signature
+> 노마드코더 타입스크립트로 블록체인 만들기 강의 내용 #3.0 - #3.4
 
-```ts
+---
+
+## Call Signature (호출 시그니처)
+
+Call Signature(호출 시그니처)는 함수의 타입을 정의하는 방식이다.
+특히 익명 함수 타입이나 객체 내에서 함수 타입을 명확히 할 때 사용한다.
+
+```typescript
+// Call Signature를 사용한 함수 타입 정의
 type Add = (a: number, b: number) => number;
-
+// 위 타입을 가진 함수 선언
 const add: Add = (a, b) => a + b;
+
+// call signature를 사용하지 않은 함수 선언
+const add1 = (a: number, b: number) => a + b;
 ```
 
-## 오버로딩 overloading
+---
 
-```ts
-// 오버로딩: 함수가 서로 다른 여러개의 call signatures를 가지고 있을 때 발생시킴
+## Overloading (오버로딩)
 
-type Add = {
-  (a: number, b: number): number;
-  (a: number, b: string): number;
-};
-const add: Add = (a, b) => {
-  if (typeof b === "string") return a;
-  return a + b;
-};
+오버로딩은 하나의 함수 이름으로 다양한 매개변수 타입 또는 개수를 처리할 수 있도록 정의하는 것을 말한다.
 
-// route 라이브러리 예시 아마도
-type Config = {
-  path: string;
-  state: object;
-};
-type Push = {
-  (path: string): void;
-  (config: Config): void;
-};
+Typescript에서 함수 오버로딩은 여러 개의 함수 시그니처(선언부)를 작성한 후, 하나의 구현부에서 처리하는 방식으로 이뤄진다.
+구현부에서 공통 로직을 처리해야 하므로, 타입 검사를 적절히 활용해야 한다.
 
-const push: Push = (config) => {
-  if (typeof config === "string") console.log(config);
-  else {
-    console.log(config.path);
+```typescript
+// 오버로드 시그니처(선언부)
+function getInfo(value: string): string;
+function getInfo(value: number): number;
+
+// 구현부 (실제 함수 정의)
+function getInfo(value: string | number): string | number {
+  if (typeof value === "string") {
+    return `Hello, ${value}`; // 문자열 입력 시 문자열 반환
+  } else {
+    return value * 10; // 숫자 입력 시 숫자 반환
   }
-};
+}
 
-// 파라미터의 갯수가 다른 경우 -> 옵션
-type Add = {
-  (a: number, b: number): number;
-  (a: number, b: number, c: number): number;
-};
-
-const add: Add = (a, b, c?: number) => {
-  if (c) return a + b + c;
-  return a + b;
-};
+// 사용 예시
+console.log(getInfo("Alice")); // ✅ "Hello, Alice"
+console.log(getInfo(5)); // ✅ 50
+// console.log(getInfo(true)); ❌ 오류 (boolean 타입은 허용되지 않음)
 ```
 
-## 다형성 polymorphism
+- 매개변수 개수에 따른 오버로딩
 
-```ts
-// 배열을 받고 그 배열의 요소를 하나씩 print
+```typescript
+// 오버로드 시그니처
+function multiply(a: number, b: number): number;
+function multiply(a: number): number;
 
-// concrete type: 우리가 전부터 봐왔던 타입(number, boolean, string, void 등)
-// 모든 경우마다 call signature 작성해 줘야 함
-type SuperPrint = {
-  (arr: number[]): void;
-  (arr: boolean[]): void;
-  (arr: string[]): void;
-};
-// generic: 타입의 placeholder
-// concrete type을 모를 때
-// 타입을 유추하고 유추한 타입으로 call signature 대체
-type SuperPrint = {
-  // <TypePlaceholder>(arr: TypePlaceholder[]): void;
+// 구현부
+function multiply(a: number, b?: number): number {
+  if (b !== undefined) {
+    return a * b; // 두 개의 매개변수 제공 시 곱셈 수행
+  } else {
+    return a * a; // 하나만 제공 시 제곱 연산 수행
+  }
+}
+
+// 사용 예시
+console.log(multiply(5, 3)); // ✅ 15  (5 * 3)
+console.log(multiply(4)); // ✅ 16  (4 * 4)
+// console.log(multiply()); ❌ 오류 (최소 1개의 인자가 필요)
+```
+
+- 다양한 형태를 처리하는 함수
+
+```typescript
+// 오버로드 시그니처
+function sum(numbers: number[]): number;
+function sum(a: number, b: number, c: number): number;
+
+// 구현부
+function sum(a: number | number[], b?: number, c?: number): number {
+  if (Array.isArray(a)) {
+    return a.reduce((acc, num) => acc + num, 0); // 배열이면 합계 계산
+  }
+  return a + (b ?? 0) + (c ?? 0); // 숫자 3개 입력 시 더하기
+}
+
+// 사용 예시
+console.log(sum([1, 2, 3, 4])); // ✅ 10  (배열 요소 합)
+console.log(sum(1, 2, 3)); // ✅ 6   (1 + 2 + 3)
+// console.log(sum(1, 2)); ❌ 오류 (매개변수 2개는 정의되지 않음)
+```
+
+---
+
+## Polymorphism (다형성)
+
+Polymorphism(다형성)은 같은 인터페이스 또는 부모 클래스를 공유하면서도, 각기 다른 동작을 수행할 수 있는 능력을 의미한다. 즉, 같은 메서드나 속성을 다른 방식으로 구현할 수 있다.
+Typescript에서 다형성을 활용하면 유연하고 확장 가능한 객체 지향 프로그래밍(OOP)을 구현할 수 있다.
+
+다형성은 제네릭(Generic)과 결합하여 활용할 수 있다.
+
+```typescript
+type ConsolePrint = {
   <T>(arr: T[]): void;
 };
 
-const superPrint: SuperPrint = (arr) => {
-  arr.forEach((i) => console.log(i));
+const consolePrint: ConsolePrint = (arr) => {
+  console.log(arr);
 };
 
-superPrint([1, 2, 3, 4]);
-superPrint([true, false, false]);
-superPrint(["a", "b", "c"]);
-superPrint([1, 2, true, false]);
+consolePrint([1, 2, 3, 4]);
+consolePrint([false, false]);
+consolePrint(["a", "b", "c"]);
+consolePrint([1, false, "a"]);
 ```
 
-### Generics Recap
+---
 
-```ts
-// 제네릭: 요청에 따라 call signature를 생성
+## Generics
 
-// 제네릭을 하나 더 추가
-// 제네릭이 처음 사용되는 지점을 기반으로 이 타입을 알게 된다.
-// 제네릭을 처음 인식했을 때와 제네릭의 순서를 기반으로 제네릭의 타입을 안다.
-type SuperPrint = {
-  // 제네릭 설명이 아닌 이름만 말해주면 됨
-  <T, M>(arr: T[], b: M): void;
-};
+제네릭(Generics)은 여러 타입에서 재사용할 수 있도록 만든 유연한 타입시스템이다.
+즉, 특정 타입에 의존하지 않고, 다양한 타입을 처리할 수 있도록 타입을 동적으로 설정하는 기능을 제공한다.
 
-const superPrint: SuperPrint = (arr) => arr[0];
+- 기본적인 Generics 사용법
 
-const a = superPrint([1, 2, 3, 4], "x");
-const b = superPrint([true, false, false], 1);
-const c = superPrint(["a", "b", "c"], true);
-const d = superPrint([1, 2, true, false], 0);
-```
+제네릭은 함수, 인터페이스, 클래스에서 사용할 수 있다.
+기본적으로 `<T>`를 사용하여 타입을 동적으로 정의한다.
+`<T>`는 제네릭 타입 변수로, 함수 내부에서 실제 타입이 결정됩니다.
 
-### Conclusions
-
-- 우리는 제네릭을 통해 call signature를 사용할 일은 거의 없다.
-
-- 다른 패키지와 라이브러리를 사용하고 그 라이브러리들이 제네릭을 통해 생성된다.
-
-- 다시말해, 라이브러리를 만들거나 다른 개발자가 사용할 기능을 개발하는 경우에 제네릭이 유용하다.
-
-  그 외 대부분의 경우에는 제네릭을 직접 작성할 일은 없다.
-
-```ts
-// 제네릭의 call signature 외의 다른 사용 방법
-function superPrint<V>(a: V[]) {
-  return a[0];
+```typescript
+function identity<T>(value: T): T {
+  return value;
 }
 
-type Player<E> = {
-  name: string;
-  extraInfo: E;
-};
-
-type hiExtra = {
-  favFood: string;
-};
-type hiPlayer = Player<hiExtra>;
-
-const hi: hiPlayer = {
-  name: "hi",
-  extraInfo: {
-    favFood: "kimchi",
-  },
-};
-
-const lynn: Player<null> = {
-  name: "lynn",
-  extraInfo: null,
-};
-
-// 제네릭을 사용한 타입이 지정된 Array 함수 사용 시 타입 명시하기
-
-type A = Array<number>;
-function printAllNumbers(arr: Array<number>) {}
-
-// ReactJS
-useState<number>();
+console.log(identity<string>("Hello")); // "Hello"
+console.log(identity<number>(42)); // 42
+console.log(identity<boolean>(true)); // true
 ```
+
+---
